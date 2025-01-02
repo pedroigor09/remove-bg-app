@@ -1,0 +1,32 @@
+<div class="main-container">
+  <div class="section" id="upload-section">
+    <div class="card">
+      <h2>Upload e Remover Fundo</h2>
+      <div>
+        <label class="custom-file-upload">
+          <input type="file" (change)="onFileSelected($event)">
+          Escolher Arquivo
+        </label>
+        <span *ngIf="selectedFile" class="file-name">{{ selectedFile.name }}</span>
+        <button (click)="onUpload()">Upload</button>
+        <button (click)="onRemoveBackground()">Remover Fundo</button>
+      </div>
+      <div class="image-container">
+        <img *ngIf="processedImageUrl" [src]="processedImageUrl" alt="Selected Image" [ngClass]="{'removing-background': isRemovingBackground}">
+        <div *ngIf="isRemovingBackground" class="loading-spinner"></div>
+      </div>
+    </div>
+  </div>
+
+  <div class="section">
+    <h2>Imagens Enviadas:</h2>
+    <div class="images-list" *ngIf="images.length > 0">
+      <div class="image-card" *ngFor="let image of images">
+        <img [src]="'data:image/png;base64,' + image.data" [alt]="image.fileName">
+        <p>{{ image.fileName }}</p>
+        <button (click)="downloadImage(image.id, image.fileName)">Download</button>
+        <button (click)="deleteImage(image.id)">Excluir</button>
+      </div>
+    </div>
+  </div>
+</div>

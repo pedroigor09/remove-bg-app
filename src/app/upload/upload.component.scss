@@ -1,0 +1,200 @@
+body {
+    font-family: 'Roboto', sans-serif;
+    margin: 0;
+    padding: 0;
+    background-color: #1a1a1a; /* Fundo escuro */
+    color: #FFFFFF; /* Texto branco */
+}
+
+.navbar {
+    background-color: rgba(0, 0, 0, 0.85); /* Fundo preto com opacidade */
+    margin-bottom: 20px;
+    padding: 10px 20px;
+    border-bottom: 2px solid #17d09f; /* Borda neon */
+    box-shadow: 0 0 10px #17d09f; /* Efeito de luz neon */
+    position: fixed;
+    top: 0;
+    width: 100%;
+    z-index: 10;
+}
+
+.navbar .navbar-brand, .navbar .nav-link {
+    color: #FFFFFF; /* Texto branco */
+    text-decoration: none;
+    margin-right: 15px;
+}
+
+.navbar .nav-link:hover {
+    color: #FFD700; /* Texto dourado ao passar o mouse */
+}
+
+.main-container {
+    display: flex;
+    justify-content: space-between;
+    padding: 80px 20px 20px; /* Espaçamento para a navbar fixa */
+}
+
+.section {
+    flex: 1;
+    margin: 0 10px;
+}
+
+.section h2 {
+    color: #17d09f; /* Título em neon */
+    margin-bottom: 20px;
+    text-align: center;
+}
+
+.card {
+    background-color: rgba(255, 255, 255, 0.1); /* Fundo levemente transparente */
+    border: 1px solid #17d09f; /* Borda neon */
+    box-shadow: 0 0 10px #17d09f; /* Efeito de luz neon */
+    padding: 40px;
+    border-radius: 10px;
+    margin-bottom: 20px;
+    text-align: center; /* Centralizar conteúdo */
+}
+
+.card input[type="file"], .card button {
+    margin-bottom: 20px;
+    width: 100%;
+    padding: 10px;
+}
+
+.card button {
+    background-color: #000000; /* Fundo preto */
+    border: 2px solid #17d09f; /* Borda neon */
+    color: #17d09f; /* Texto neon */
+    border-radius: 50px; /* Botão redondo */
+    cursor: pointer;
+    box-shadow: 0 0 10px #17d09f; /* Efeito de luz neon */
+    transition: background-color 0.3s, color 0.3s;
+}
+
+.card button:hover {
+    background-color: #17d09f; /* Fundo neon ao passar o mouse */
+    color: #000000; /* Texto preto ao passar o mouse */
+}
+
+.card img {
+    max-width: 100%; /* Limitar largura da imagem */
+    margin-top: 20px;
+    border: 2px solid #17d09f; /* Borda neon */
+    box-shadow: 0 0 5px #17d09f; /* Efeito de luz neon */
+}
+
+/* Estilo para esconder o input de arquivo padrão */
+input[type="file"] {
+    display: none;
+}
+
+/* Estilo para o botão customizado */
+.custom-file-upload {
+    display: inline-block;
+    background-color: #000000; /* Fundo preto */
+    border: 2px solid #17d09f; /* Borda neon */
+    color: #17d09f; /* Texto neon */
+    padding: 10px 20px;
+    border-radius: 50px; /* Botão redondo */
+    cursor: pointer;
+    box-shadow: 0 0 10px #17d09f; /* Efeito de luz neon */
+    transition: background-color 0.3s, color 0.3s;
+    margin-bottom: 20px; /* Espaçamento inferior */
+}
+
+.custom-file-upload:hover {
+    background-color: #17d09f; /* Fundo neon ao passar o mouse */
+    color: #000000; /* Texto preto ao passar o mouse */
+}
+
+/* Estilo para o texto do arquivo selecionado */
+.file-name {
+    margin-top: 10px;
+    color: #FFFFFF; /* Texto branco */
+}
+
+.images-list {
+    display: flex;
+    flex-wrap: wrap;
+    justify-content: center;
+}
+
+.images-list .image-card {
+    margin: 10px;
+    background-color: rgba(255, 255, 255, 0.1); /* Fundo levemente transparente */
+    border: 1px solid #17d09f; /* Borda neon */
+    box-shadow: 0 0 5px #17d09f; /* Efeito de luz neon */
+    padding: 20px;
+    border-radius: 10px;
+    text-align: center;
+}
+
+.images-list img {
+    width: 150px; /* Largura das miniaturas */
+    height: auto;
+    border: 2px solid #17d09f; /* Borda neon */
+    box-shadow: 0 0 5px #17d09f; /* Efeito de luz neon */
+    margin-bottom: 10px;
+}
+
+.images-list button {
+    background-color: #000000; /* Fundo preto */
+    border: 2px solid #17d09f; /* Borda neon */
+    color: #17d09f; /* Texto neon */
+    padding: 10px 20px;
+    border-radius: 50px; /* Botão redondo */
+    cursor: pointer;
+    box-shadow: 0 0 10px #17d09f; /* Efeito de luz neon */
+    transition: background-color 0.3s, color 0.3s;
+    margin-top: 10px; /* Espaçamento entre os botões */
+}
+
+.images-list button:hover {
+    background-color: #17d09f; /* Fundo neon ao passar o mouse */
+    color: #000000; /* Texto preto ao passar o mouse */
+}
+
+/* Animação para remoção de fundo */
+@keyframes backgroundRemoval {
+    0% {
+        clip-path: inset(0 0 100% 0);
+    }
+    100% {
+        clip-path: inset(0 0 0 0);
+    }
+}
+
+.image-container {
+    position: relative;
+    display: inline-block;
+}
+
+.image-container img {
+    width: auto;
+    max-width: 100%; /* Limitar largura da imagem */
+    display: block;
+    margin: 0 auto;
+}
+
+.removing-background {
+    animation: backgroundRemoval 3s linear forwards;
+}
+
+/* Spinner de carregamento */
+.loading-spinner {
+    border: 16px solid #f3f3f3; /* Cor clara */
+    border-top: 16px solid #17d09f; /* Cor neon */
+    border-radius: 50%;
+    width: 120px;
+    height: 120px;
+    animation: spin 2s linear infinite;
+    position: absolute;
+    top: 50%;
+    left: 50%;
+    transform: translate(-50%, -50%);
+}
+
+@keyframes spin {
+    0% { transform: rotate(0deg); }
+    100% { transform: rotate(360deg); }
+}

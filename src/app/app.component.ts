@@ -1,12 +1,15 @@
 import { Component } from '@angular/core';
-import { RouterOutlet } from '@angular/router';
+import { UploadComponent } from './upload/upload.component';
 
 @Component({
+  standalone: true,
   selector: 'app-root',
-  imports: [RouterOutlet],
   templateUrl: './app.component.html',
-  styleUrl: './app.component.scss'
+  styleUrls: ['./app.component.scss'],
+  imports: [
+    UploadComponent
+  ]
 })
 export class AppComponent {
-  title = 'remove-bg-app';
+  title = 'remove-bg-app'; // Adicione a propriedade title
 }
