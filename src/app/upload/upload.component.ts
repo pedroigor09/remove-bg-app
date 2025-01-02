@@ -18,13 +18,13 @@ export class UploadComponent implements OnInit {
   images: any[] = [];
   processedImageUrl: string | null = null;
   processedImageId: number | null = null;
-  isRemovingBackground: boolean = false; // Variável para controlar a animação
+  isRemovingBackground: boolean = false;
 
   constructor(private http: HttpClient) {}
 
   ngOnInit() {
     this.loadImages();
-    // Adicionar listener para evento de colagem
+    
     document.addEventListener('paste', this.handlePaste.bind(this));
   }
 
@@ -63,8 +63,8 @@ export class UploadComponent implements OnInit {
     if (this.selectedFile) {
       const formData = new FormData();
       formData.append('file', this.selectedFile);
-  
-      this.http.post('http://localhost:5000/upload', formData)
+
+      this.http.post('http://localhost:8080/api/images/upload', formData)
         .subscribe(
           (response: any) => {
             console.log('Upload Successful', response);
@@ -75,11 +75,11 @@ export class UploadComponent implements OnInit {
           }
         );
     }
-  }  
+  }
 
   onRemoveBackground() {
     if (this.selectedFile) {
-      this.isRemovingBackground = true; // Iniciar a animação
+      this.isRemovingBackground = true;
       const formData = new FormData();
       formData.append('file', this.selectedFile);
 
@@ -89,11 +89,11 @@ export class UploadComponent implements OnInit {
             this.processedImageId = response.id;
             const imageData = `data:image/png;base64,${response.data}`;
             this.processedImageUrl = imageData;
-            this.isRemovingBackground = false; // Parar a animação
+            this.isRemovingBackground = false;
             console.log('Background Removal Successful');
           },
           (error: any) => {
-            this.isRemovingBackground = false; // Parar a animação em caso de erro
+            this.isRemovingBackground = false;
             console.error('Background Removal Failed', error);
           }
         );
@@ -129,6 +129,9 @@ export class UploadComponent implements OnInit {
     this.http.get<any[]>('http://localhost:8080/api/images/all')
       .subscribe(images => {
         this.images = images;
+      },
+      (error: any) => {
+        console.error('Failed to load images', error);
       });
   }
 }

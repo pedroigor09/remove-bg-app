@@ -2,16 +2,16 @@ body {
     font-family: 'Roboto', sans-serif;
     margin: 0;
     padding: 0;
-    background-color: #1a1a1a; /* Fundo escuro */
-    color: #FFFFFF; /* Texto branco */
+    background-color: #1a1a1a;
+    color: #FFFFFF;
 }
 
 .navbar {
-    background-color: rgba(0, 0, 0, 0.85); /* Fundo preto com opacidade */
+    background-color: rgba(0, 0, 0, 0.85);
     margin-bottom: 20px;
     padding: 10px 20px;
-    border-bottom: 2px solid #17d09f; /* Borda neon */
-    box-shadow: 0 0 10px #17d09f; /* Efeito de luz neon */
+    border-bottom: 2px solid #17d09f;
+    box-shadow: 0 0 10px #17d09f; 
     position: fixed;
     top: 0;
     width: 100%;
@@ -19,19 +19,19 @@ body {
 }
 
 .navbar .navbar-brand, .navbar .nav-link {
-    color: #FFFFFF; /* Texto branco */
+    color: #FFFFFF;
     text-decoration: none;
     margin-right: 15px;
 }
 
 .navbar .nav-link:hover {
-    color: #FFD700; /* Texto dourado ao passar o mouse */
+    color: #FFD700;
 }
 
 .main-container {
     display: flex;
     justify-content: space-between;
-    padding: 80px 20px 20px; /* Espaçamento para a navbar fixa */
+    padding: 80px 20px 20px; 
 }
 
 .section {
@@ -40,19 +40,19 @@ body {
 }
 
 .section h2 {
-    color: #17d09f; /* Título em neon */
+    color: #17d09f;
     margin-bottom: 20px;
     text-align: center;
 }
 
 .card {
-    background-color: rgba(255, 255, 255, 0.1); /* Fundo levemente transparente */
-    border: 1px solid #17d09f; /* Borda neon */
-    box-shadow: 0 0 10px #17d09f; /* Efeito de luz neon */
+    background-color: rgba(255, 255, 255, 0.1); 
+    border: 1px solid #17d09f; 
+    box-shadow: 0 0 10px #17d09f; 
     padding: 40px;
     border-radius: 10px;
     margin-bottom: 20px;
-    text-align: center; /* Centralizar conteúdo */
+    text-align: center; 
 }
 
 .card input[type="file"], .card button {
@@ -62,55 +62,55 @@ body {
 }
 
 .card button {
-    background-color: #000000; /* Fundo preto */
-    border: 2px solid #17d09f; /* Borda neon */
-    color: #17d09f; /* Texto neon */
-    border-radius: 50px; /* Botão redondo */
+    background-color: #000000; 
+    border: 2px solid #17d09f; 
+    color: #17d09f; 
+    border-radius: 50px;
     cursor: pointer;
-    box-shadow: 0 0 10px #17d09f; /* Efeito de luz neon */
+    box-shadow: 0 0 10px #17d09f;
     transition: background-color 0.3s, color 0.3s;
 }
 
 .card button:hover {
-    background-color: #17d09f; /* Fundo neon ao passar o mouse */
-    color: #000000; /* Texto preto ao passar o mouse */
+    background-color: #17d09f;
+    color: #000000;
 }
 
 .card img {
-    max-width: 100%; /* Limitar largura da imagem */
+    max-width: 100%; 
     margin-top: 20px;
-    border: 2px solid #17d09f; /* Borda neon */
-    box-shadow: 0 0 5px #17d09f; /* Efeito de luz neon */
+    border: 2px solid #17d09f;
+    box-shadow: 0 0 5px #17d09f; 
 }
 
-/* Estilo para esconder o input de arquivo padrão */
+
 input[type="file"] {
     display: none;
 }
 
-/* Estilo para o botão customizado */
+
 .custom-file-upload {
     display: inline-block;
-    background-color: #000000; /* Fundo preto */
-    border: 2px solid #17d09f; /* Borda neon */
-    color: #17d09f; /* Texto neon */
+    background-color: #000000; 
+    border: 2px solid #17d09f; 
+    color: #17d09f; 
     padding: 10px 20px;
-    border-radius: 50px; /* Botão redondo */
+    border-radius: 50px;
     cursor: pointer;
-    box-shadow: 0 0 10px #17d09f; /* Efeito de luz neon */
+    box-shadow: 0 0 10px #17d09f; 
     transition: background-color 0.3s, color 0.3s;
-    margin-bottom: 20px; /* Espaçamento inferior */
+    margin-bottom: 20px; 
 }
 
 .custom-file-upload:hover {
-    background-color: #17d09f; /* Fundo neon ao passar o mouse */
-    color: #000000; /* Texto preto ao passar o mouse */
+    background-color: #17d09f; 
+    color: #000000; 
 }
 
-/* Estilo para o texto do arquivo selecionado */
+
 .file-name {
     margin-top: 10px;
-    color: #FFFFFF; /* Texto branco */
+    color: #FFFFFF;
 }
 
 .images-list {
@@ -121,40 +121,40 @@ input[type="file"] {
 
 .images-list .image-card {
     margin: 10px;
-    background-color: rgba(255, 255, 255, 0.1); /* Fundo levemente transparente */
-    border: 1px solid #17d09f; /* Borda neon */
-    box-shadow: 0 0 5px #17d09f; /* Efeito de luz neon */
+    background-color: rgba(255, 255, 255, 0.1); 
+    border: 1px solid #17d09f; 
+    box-shadow: 0 0 5px #17d09f; 
     padding: 20px;
     border-radius: 10px;
     text-align: center;
 }
 
 .images-list img {
-    width: 150px; /* Largura das miniaturas */
+    width: 150px;
     height: auto;
-    border: 2px solid #17d09f; /* Borda neon */
-    box-shadow: 0 0 5px #17d09f; /* Efeito de luz neon */
+    border: 2px solid #17d09f; 
+    box-shadow: 0 0 5px #17d09f; 
     margin-bottom: 10px;
 }
 
 .images-list button {
-    background-color: #000000; /* Fundo preto */
-    border: 2px solid #17d09f; /* Borda neon */
-    color: #17d09f; /* Texto neon */
+    background-color: #000000;
+    border: 2px solid #17d09f;
+    color: #17d09f;
     padding: 10px 20px;
-    border-radius: 50px; /* Botão redondo */
+    border-radius: 50px; 
     cursor: pointer;
-    box-shadow: 0 0 10px #17d09f; /* Efeito de luz neon */
+    box-shadow: 0 0 10px #17d09f; 
     transition: background-color 0.3s, color 0.3s;
-    margin-top: 10px; /* Espaçamento entre os botões */
+    margin-top: 10px; 
 }
 
 .images-list button:hover {
-    background-color: #17d09f; /* Fundo neon ao passar o mouse */
-    color: #000000; /* Texto preto ao passar o mouse */
+    background-color: #17d09f; 
+    color: #000000; 
 }
 
-/* Animação para remoção de fundo */
+
 @keyframes backgroundRemoval {
     0% {
         clip-path: inset(0 0 100% 0);
@@ -171,7 +171,7 @@ input[type="file"] {
 
 .image-container img {
     width: auto;
-    max-width: 100%; /* Limitar largura da imagem */
+    max-width: 100%; 
     display: block;
     margin: 0 auto;
 }
@@ -182,8 +182,8 @@ input[type="file"] {
 
 /* Spinner de carregamento */
 .loading-spinner {
-    border: 16px solid #f3f3f3; /* Cor clara */
-    border-top: 16px solid #17d09f; /* Cor neon */
+    border: 16px solid #f3f3f3; 
+    border-top: 16px solid #17d09f;
     border-radius: 50%;
     width: 120px;
     height: 120px;
