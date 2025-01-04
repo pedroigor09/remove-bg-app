@@ -1,8 +1,12 @@
 {
+    "version": 2,
     "builds": [
       {
-        "src": "src/main.ts",
-        "use": "@vercel/angular"
+        "src": "angular.json",
+        "use": "@vercel/static-build",
+        "config": {
+          "distDir": "dist/remove-bg-app"
+        }
       }
     ],
     "routes": [
