@@ -76,14 +76,14 @@
         "serve": {
           "builder": "@angular-devkit/build-angular:dev-server",
           "options": {
-            "browserTarget": "removebackgroundapi:build:development"
+            "buildTarget": "removebackgroundapi:build:development"
           },
           "configurations": {
             "production": {
-              "browserTarget": "removebackgroundapi:build:production"
+              "buildTarget": "removebackgroundapi:build:production"
             },
             "development": {
-              "browserTarget": "removebackgroundapi:build:development"
+              "buildTarget": "removebackgroundapi:build:development"
             }
           },
           "defaultConfiguration": "development"
@@ -91,7 +91,7 @@
         "extract-i18n": {
           "builder": "@angular-devkit/build-angular:extract-i18n",
           "options": {
-            "browserTarget": "removebackgroundapi:build"
+            "buildTarget": "removebackgroundapi:build"
           }
         },
         "test": {
