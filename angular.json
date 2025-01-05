@@ -20,9 +20,7 @@
             "outputPath": "dist/remove-bg-app",
             "index": "src/index.html",
             "main": "src/main.ts",
-            "polyfills": [
-              "src/polyfills.ts"
-            ],
+            "polyfills": "src/polyfills.ts",
             "tsConfig": "tsconfig.app.json",
             "inlineStyleLanguage": "scss",
             "assets": [
@@ -63,8 +61,7 @@
                   "maximumWarning": "4kB",
                   "maximumError": "8kB"
                 }
-              ],
-              "baseHref": "/"
+              ]
             },
             "development": {
               "buildOptimizer": false,
@@ -72,8 +69,7 @@
               "vendorChunk": true,
               "extractLicenses": false,
               "sourceMap": true,
-              "namedChunks": true,
-              "baseHref": "/"
+              "namedChunks": true
             }
           },
           "defaultConfiguration": "production"
