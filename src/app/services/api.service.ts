@@ -1,7 +1,6 @@
-// src/app/services/api.service.ts
 import { HttpClient } from '@angular/common/http';
 import { Injectable } from '@angular/core';
-import { environment } from '../../environments/environment.prod'; // Certifique-se de usar .prod
+import { environment } from '../../environments/environment.prod'; // Use o arquivo .prod
 
 @Injectable({
   providedIn: 'root'
