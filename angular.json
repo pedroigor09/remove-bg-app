@@ -3,7 +3,7 @@
   "version": 1,
   "newProjectRoot": "projects",
   "projects": {
-    "remove-bg-app": {
+    "removebackgroundapi": {
       "projectType": "application",
       "schematics": {
         "@schematics/angular:component": {
@@ -17,7 +17,7 @@
         "build": {
           "builder": "@angular-devkit/build-angular:application",
           "options": {
-            "outputPath": "dist/remove-bg-app",
+            "outputPath": "dist/removebackgroundapi",
             "index": "src/index.html",
             "main": "src/main.ts",
             "polyfills": "src/polyfills.ts",
@@ -77,10 +77,10 @@
           "builder": "@angular-devkit/build-angular:dev-server",
           "configurations": {
             "production": {
-              "browserTarget": "remove-bg-app:build:production"
+              "browserTarget": "removebackgroundapi:build:production"
             },
             "development": {
-              "browserTarget": "remove-bg-app:build:development"
+              "browserTarget": "removebackgroundapi:build:development"
             }
           },
           "defaultConfiguration": "development"
