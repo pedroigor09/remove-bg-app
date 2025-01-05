@@ -19,7 +19,7 @@
           "options": {
             "outputPath": "dist/remove-bg-app",
             "index": "src/index.html",
-            "main": "src/main.ts",  <!-- propriedade necessária -->
+            "main": "src/main.ts",  // Aqui estamos garantindo que a propriedade "main" está presente
             "polyfills": [
               "src/polyfills.ts"
             ],
@@ -97,7 +97,7 @@
         "test": {
           "builder": "@angular-devkit/build-angular:karma",
           "options": {
-            "main": "src/test.ts",
+            "main": "src/test.ts",  // Adicionando a propriedade "main"
             "polyfills": [
               "zone.js",
               "zone.js/testing"
