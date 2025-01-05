@@ -70,12 +70,12 @@
               "namedChunks": true
             }
           },
-          "defaultConfiguration": "production"
+          "defaultConfiguration": "development"
         },
         "serve": {
           "builder": "@angular-devkit/build-angular:dev-server",
           "options": {
-            "browserTarget": "removebackgroundapi:build"
+            "browserTarget": "removebackgroundapi:build:development"
           },
           "configurations": {
             "production": {
