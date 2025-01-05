@@ -19,7 +19,7 @@
           "options": {
             "outputPath": "dist/remove-bg-app",
             "index": "src/index.html",
-            "main": "src/main.ts",
+            "main": "src/main.ts",  <!-- propriedade necessária -->
             "polyfills": [
               "src/polyfills.ts"
             ],
