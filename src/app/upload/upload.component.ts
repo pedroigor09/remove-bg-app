@@ -2,6 +2,7 @@ import { Component, OnInit } from '@angular/core';
 import { HttpClient, HttpClientModule } from '@angular/common/http';
 import { CommonModule } from '@angular/common';
 import { saveAs } from 'file-saver';
+import { environment } from '../../environments/environment.prod';
 
 @Component({
   standalone: true,
@@ -24,7 +25,6 @@ export class UploadComponent implements OnInit {
 
   ngOnInit() {
     this.loadImages();
-    
     document.addEventListener('paste', this.handlePaste.bind(this));
   }
 
@@ -64,7 +64,7 @@ export class UploadComponent implements OnInit {
       const formData = new FormData();
       formData.append('file', this.selectedFile);
 
-      this.http.post('http://localhost:8080/api/images/upload', formData)
+      this.http.post(`${environment.apiJavaUrl}/images/upload`, formData)
         .subscribe(
           (response: any) => {
             console.log('Upload Successful', response);
@@ -83,7 +83,7 @@ export class UploadComponent implements OnInit {
       const formData = new FormData();
       formData.append('file', this.selectedFile);
 
-      this.http.post('http://localhost:8080/api/images/remove-background', formData)
+      this.http.post(`${environment.apiPythonUrl}/remove-background`, formData)
         .subscribe(
           (response: any) => {
             this.processedImageId = response.id;
@@ -101,7 +101,7 @@ export class UploadComponent implements OnInit {
   }
 
   downloadImage(imageId: number, fileName: string) {
-    this.http.get(`http://localhost:8080/api/images/download/${imageId}`, { responseType: 'blob' })
+    this.http.get(`${environment.apiJavaUrl}/images/download/${imageId}`, { responseType: 'blob' })
       .subscribe(
         (response: Blob) => {
           saveAs(response, fileName);
@@ -113,7 +113,7 @@ export class UploadComponent implements OnInit {
   }
 
   deleteImage(imageId: number) {
-    this.http.delete(`http://localhost:8080/api/images/delete/${imageId}`)
+    this.http.delete(`${environment.apiJavaUrl}/images/delete/${imageId}`)
       .subscribe(
         () => {
           console.log('Image Deleted');
@@ -126,7 +126,7 @@ export class UploadComponent implements OnInit {
   }
 
   loadImages() {
-    this.http.get<any[]>('http://localhost:8080/api/images/all')
+    this.http.get<any[]>(`${environment.apiJavaUrl}/images/all`)
       .subscribe(images => {
         this.images = images;
       },
