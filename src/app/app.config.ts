@@ -8,7 +8,6 @@ import { ApiService } from './services/api.service'; // Importa o serviço
     BrowserModule,
     HttpClientModule
   ],
-  providers: [ApiService], // Adiciona o serviço aos providers
-  bootstrap: []
+  providers: [ApiService] // Adicione o serviço aos providers
 })
 export class AppModule { }
