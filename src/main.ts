@@ -5,6 +5,8 @@ import { importProvidersFrom } from '@angular/core';
 import { environment } from './environments/environment.prod';
 
 console.log('Ambiente de produção:', environment.production);
+console.log('API Java URL:', environment.apiJavaUrl);
+console.log('API Python URL:', environment.apiPythonUrl);
 
 bootstrapApplication(AppComponent, {
   providers: [

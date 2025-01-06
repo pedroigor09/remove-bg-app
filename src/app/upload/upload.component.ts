@@ -82,7 +82,8 @@ export class UploadComponent implements OnInit {
       this.isRemovingBackground = true;
       const formData = new FormData();
       formData.append('file', this.selectedFile);
-
+  
+      console.log('Fazendo requisição POST para remover o background...');
       this.http.post(`${environment.apiPythonUrl}/remove-background`, formData)
         .subscribe(
           (response: any) => {
@@ -95,10 +96,11 @@ export class UploadComponent implements OnInit {
           (error: any) => {
             this.isRemovingBackground = false;
             console.error('Background Removal Failed', error);
+            console.log('URL Utilizada:', `${environment.apiPythonUrl}/remove-background`); // Adicione este log
           }
         );
     }
-  }
+  }  
 
   downloadImage(imageId: number, fileName: string) {
     this.http.get(`${environment.apiJavaUrl}/images/download/${imageId}`, { responseType: 'blob' })
@@ -126,12 +128,16 @@ export class UploadComponent implements OnInit {
   }
 
   loadImages() {
-    this.http.get<any[]>(`${environment.apiJavaUrl}/images/all`)
-      .subscribe(images => {
-        this.images = images;
-      },
-      (error: any) => {
-        console.error('Failed to load images', error);
-      });
+    // No método loadImages:
+this.http.get<any[]>(`${environment.apiJavaUrl}/images/all`).subscribe(
+  (images) => {
+    this.images = images;
+  },
+  (error: any) => {
+    console.error('Failed to load images', error);
+    console.log('URL Utilizada:', `${environment.apiJavaUrl}/images/all`); // Adicione este log
+  }
+);
+
   }
 }
