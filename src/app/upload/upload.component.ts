@@ -2,7 +2,7 @@ import { Component, OnInit } from '@angular/core';
 import { HttpClient, HttpClientModule } from '@angular/common/http';
 import { CommonModule } from '@angular/common';
 import { saveAs } from 'file-saver';
-import { environment } from '../../environments/environment.prod';
+import { environment } from '../../environments/environment';
 
 @Component({
   standalone: true,
@@ -18,7 +18,6 @@ export class UploadComponent implements OnInit {
   selectedFile: File | null = null;
   images: any[] = [];
   processedImageUrl: string | null = null;
-  processedImageId: number | null = null;
   isRemovingBackground: boolean = false;
 
   constructor(private http: HttpClient) {}
@@ -43,7 +42,7 @@ export class UploadComponent implements OnInit {
   handlePaste(event: ClipboardEvent) {
     const items = event.clipboardData?.items;
     if (items) {
-      for (let i = 0; i < items.length; i++) {
+      for (let i = 0; items && i < items.length; i++) {
         if (items[i].type.indexOf("image") !== -1) {
           const file = items[i].getAsFile();
           if (file) {
@@ -59,51 +58,84 @@ export class UploadComponent implements OnInit {
     }
   }
 
+  // Função de Upload Atualizada:
   onUpload() {
     if (this.selectedFile) {
-      const formData = new FormData();
-      formData.append('file', this.selectedFile);
-
-      this.http.post(`${environment.apiJavaUrl}/images/upload`, formData)
-        .subscribe(
-          (response: any) => {
-            console.log('Upload Successful', response);
-            this.loadImages();
-          },
-          (error: any) => {
-            console.error('Upload Failed', error);
-          }
-        );
+        const formData = new FormData();
+        formData.append('file', this.selectedFile);
+  
+        this.http.post(`${environment.apiJavaUrl}/api/images/upload`, formData)
+            .subscribe(
+                (response: any) => {
+                    console.log('Upload Successful', response);
+  
+                    if (response && response.processedImageData) {
+                        const base64Data = response.processedImageData;
+                        console.log('Base64 Data Length:', base64Data.length);
+                        console.log('Base64 Data:', base64Data);
+  
+                        if (base64Data) {
+                            try {
+                                const processedImageUrl = `data:image/png;base64,${base64Data}`;
+                                console.log('Processed Image URL:', processedImageUrl);
+  
+                                const processedImage = {
+                                    id: response.processedImageId,
+                                    url: processedImageUrl
+                                };
+  
+                                this.images.push({ id: response.originalImageId, url: this.processedImageUrl });
+                                this.images.push(processedImage);
+                                this.processedImageUrl = processedImageUrl;
+                            } catch (e) {
+                                console.error('Erro ao decodificar a string base64:', e);
+                            }
+                        } else {
+                            console.error('Processed image data is undefined or null');
+                        }
+                    } else {
+                        console.error('Processed image data is missing in response', response);
+                    }
+                    this.loadImages();
+                },
+                (error: any) => {
+                    console.error('Upload Failed', error);
+                }
+            );
     }
   }
+  
 
   onRemoveBackground() {
     if (this.selectedFile) {
       this.isRemovingBackground = true;
       const formData = new FormData();
       formData.append('file', this.selectedFile);
-  
+
       console.log('Fazendo requisição POST para remover o background...');
       this.http.post(`${environment.apiPythonUrl}/remove-background`, formData)
         .subscribe(
           (response: any) => {
-            this.processedImageId = response.id;
-            const imageData = `data:image/png;base64,${response.data}`;
-            this.processedImageUrl = imageData;
+            if (response && response.data) {
+              const imageData = `data:image/png;base64,${response.data}`;
+              this.processedImageUrl = imageData;
+              console.log('Background Removal Successful');
+            } else {
+              console.error('Invalid Response Structure', response);
+            }
             this.isRemovingBackground = false;
-            console.log('Background Removal Successful');
           },
           (error: any) => {
             this.isRemovingBackground = false;
             console.error('Background Removal Failed', error);
-            console.log('URL Utilizada:', `${environment.apiPythonUrl}/remove-background`); // Adicione este log
+            console.log('URL Utilizada:', `${environment.apiPythonUrl}/remove-background`);
           }
         );
     }
-  }  
+  }
 
   downloadImage(imageId: number, fileName: string) {
-    this.http.get(`${environment.apiJavaUrl}/images/download/${imageId}`, { responseType: 'blob' })
+    this.http.get(`${environment.apiJavaUrl}/api/images/download/${imageId}`, { responseType: 'blob' })
       .subscribe(
         (response: Blob) => {
           saveAs(response, fileName);
@@ -115,7 +147,7 @@ export class UploadComponent implements OnInit {
   }
 
   deleteImage(imageId: number) {
-    this.http.delete(`${environment.apiJavaUrl}/images/delete/${imageId}`)
+    this.http.delete(`${environment.apiJavaUrl}/api/images/delete/${imageId}`)
       .subscribe(
         () => {
           console.log('Image Deleted');
@@ -128,16 +160,14 @@ export class UploadComponent implements OnInit {
   }
 
   loadImages() {
-    // No método loadImages:
-this.http.get<any[]>(`${environment.apiJavaUrl}/images/all`).subscribe(
-  (images) => {
-    this.images = images;
-  },
-  (error: any) => {
-    console.error('Failed to load images', error);
-    console.log('URL Utilizada:', `${environment.apiJavaUrl}/images/all`); // Adicione este log
-  }
-);
-
+    this.http.get<any[]>(`${environment.apiJavaUrl}/api/images/all`).subscribe(
+      (images) => {
+        this.images = images;
+      },
+      (error: any) => {
+        console.error('Failed to load images', error);
+        console.log('URL Utilizada:', `${environment.apiJavaUrl}/api/images/all`);
+      }
+    );
   }
 }
